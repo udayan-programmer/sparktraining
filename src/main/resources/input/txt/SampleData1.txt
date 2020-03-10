@@ -1,0 +1,5 @@
+I am inside file SampleData1.txt
+Good Morning
+Good Afternoon
+Good Evening
+End of file SampleData1.txt
