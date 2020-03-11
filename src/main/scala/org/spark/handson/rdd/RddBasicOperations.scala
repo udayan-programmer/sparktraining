@@ -56,7 +56,7 @@ object RddBasicOperations extends App with SparkSessionConnection {
 
   // RDD with text file
   val rddTextFile: RDD[String] = spark.sparkContext
-    .textFile(path = "/Users/udayan/datasets/SampleData1.txt", minPartitions = 4)
+    .textFile(path = "src/main/resources/input/txt/SampleData1.txt", minPartitions = 4)
 
 
   /**
@@ -208,6 +208,6 @@ object RddBasicOperations extends App with SparkSessionConnection {
    * def saveAsTextFile(path: String, codec: Class[_ <:CompressionCodec]): Unit
    *
    */
-  // rddTextFile.saveAsTextFile("/Users/udayan/datasets/output/nocompression")
-  // rddTextFile.saveAsTextFile("/Users/udayan/datasets/output/gzip/", classOf[org.apache.hadoop.io.compress.GzipCodec])
+   rddTextFile.saveAsTextFile("src/main/resources/output/nocompression")
+   rddTextFile.saveAsTextFile("src/main/resources/output/gzip", classOf[org.apache.hadoop.io.compress.GzipCodec])
 }

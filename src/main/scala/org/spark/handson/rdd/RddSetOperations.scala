@@ -20,17 +20,17 @@ object RddSetOperations extends App with SparkSessionConnection {
    * Lets create few RDDs to apply above functions
    */
 
-  val rddSet1 = spark.sparkContext.textFile("/Users/udayan/datasets/SampleData1.txt")
+  val rddSet1 = spark.sparkContext.textFile("src/main/resources/input/txt/SampleData1.txt")
     .repartition(1)
   println("Printing data for rddSet1")
   rddSet1.foreach(println)
 
-  val rddSet2 = spark.sparkContext.textFile("/Users/udayan/datasets/SampleData2.txt")
+  val rddSet2 = spark.sparkContext.textFile("src/main/resources/input/txt/SampleData2.txt")
     .repartition(1)
   println("Printing data for rddSet2")
   rddSet2.foreach(println)
 
-  val rddSet3 = spark.sparkContext.textFile("/Users/udayan/datasets/SampleData3.txt")
+  val rddSet3 = spark.sparkContext.textFile("src/main/resources/input/txt/SampleData3.txt")
     .repartition(1)
   println("Printing data for rddSet3")
   rddSet3.foreach(println)

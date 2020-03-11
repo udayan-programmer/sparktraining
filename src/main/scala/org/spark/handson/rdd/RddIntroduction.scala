@@ -75,6 +75,6 @@ object RddIntroduction extends App with SparkSessionConnection {
    * Using existing data file in filesystem
    */
   val rddTextFile: RDD[String] = spark.sparkContext
-    .textFile(path = "/Users/udayan/datasets/SampleData1.txt", minPartitions = 4)
+    .textFile(path = "src/main/resources/input/txt/SampleData1.txt", minPartitions = 4)
   rddTextFile.foreach(println)
 }

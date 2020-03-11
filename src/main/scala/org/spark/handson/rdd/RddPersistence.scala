@@ -29,7 +29,7 @@ object RddPersistence extends App with SparkSessionConnection {
   val rddSales = spark.read
     .option("header","true")
     .option("inferschema","true")
-    .csv("/Users/udayan/datasets/csv/*.csv").rdd
+    .csv("src/main/resources/input/csv/*.csv").rdd
 
   rddSales.take(10).foreach(println)
 
