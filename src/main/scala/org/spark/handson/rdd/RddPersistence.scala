@@ -55,9 +55,14 @@ object RddPersistence extends App with SparkSessionConnection {
    */
 
 
-  rddSales.persist(StorageLevel.DISK_ONLY_2)
+  rddSales.persist(StorageLevel.MEMORY_ONLY)
+
+  println(rddSales.count)
+  println(rddSales.toDebugString)
+
   rddSales.unpersist(true)
 
-
+  println(rddSales.count)
+  println(rddSales.toDebugString)
 
 }
