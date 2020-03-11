@@ -208,6 +208,7 @@ object RddBasicOperations extends App with SparkSessionConnection {
    * def saveAsTextFile(path: String, codec: Class[_ <:CompressionCodec]): Unit
    *
    */
-   rddTextFile.saveAsTextFile("src/main/resources/output/nocompression")
-   rddTextFile.saveAsTextFile("src/main/resources/output/gzip", classOf[org.apache.hadoop.io.compress.GzipCodec])
+   rddTextFile.saveAsTextFile("src/main/resources/output/finaloutput/nocompression")
+   rddTextFile.saveAsTextFile("src/main/resources/output/finaloutput/gzip",
+     classOf[org.apache.hadoop.io.compress.GzipCodec])
 }
