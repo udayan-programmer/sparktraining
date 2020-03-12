@@ -18,9 +18,9 @@ object RddSharedVariables extends App with SparkSessionConnection{
 
   val accumulator = spark.sparkContext.longAccumulator("My Accumulator")
 
-  for (counter <- 1 to 5) {
-    accumulator.add(counter)
-  }
+  val accRdd = spark.sparkContext.parallelize(Seq(1,2,3,4,5,6))
+
+  accRdd.foreach(x => accumulator.add(x))
 
   println("Value of accumulator is: " + accumulator.value)
 
