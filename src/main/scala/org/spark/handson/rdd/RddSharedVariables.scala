@@ -28,6 +28,4 @@ object RddSharedVariables extends App with SparkSessionConnection{
 
   println("Value of accumulator is: " + accumulator.value)
 
-  Thread.sleep(300000)
-
 }
