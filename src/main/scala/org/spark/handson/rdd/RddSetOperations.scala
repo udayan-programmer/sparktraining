@@ -1,9 +1,9 @@
 package org.spark.handson.rdd
 
 import org.apache.spark.rdd.RDD
-import org.spark.handson.utilities.SparkSessionConnection
 
-object RddSetOperations extends App with SparkSessionConnection {
+
+object RddSetOperations extends App {
 
   /**
    * We will target below set operations on RDD here:
@@ -35,27 +35,27 @@ object RddSetOperations extends App with SparkSessionConnection {
   println("Printing data for rddSet3")
   rddSet3.foreach(println)
 
-  val rddNum1 = spark.sparkContext.parallelize(List(1,2,3,4,4,4,4))
-  val rddNum2 = spark.sparkContext.parallelize(List(4,5,6,6,6,6,6))
-  val rddNum3 = spark.sparkContext.parallelize(List(7,8,9,10))
+  val rddNum1 = spark.sparkContext.parallelize(List(1, 2, 3, 4, 4, 4, 4))
+  val rddNum2 = spark.sparkContext.parallelize(List(4, 5, 6, 6, 6, 6, 6))
+  val rddNum3 = spark.sparkContext.parallelize(List(7, 8, 9, 10))
 
   /**
    * 1. def ++(other: RDD[T]): RDD[T]
-   *    Note: ++ do not eliminate duplicate data
+   * Note: ++ do not eliminate duplicate data
    */
   val rddUnion: RDD[Int] = rddNum1.++(rddNum2)
   rddUnion.foreach(x => print(s" $x "))
 
   /**
    * 2. def intersection(other: RDD[T]): RDD[T]
-   *    def intersection(other: RDD[T], numPartitions: Int): RDD[T]
+   * def intersection(other: RDD[T], numPartitions: Int): RDD[T]
    */
   val rddIntersection: RDD[Int] = rddNum1.intersection(rddNum2, numPartitions = 1)
   rddIntersection.foreach(x => print(s" $x "))
 
   /**
    * 3. def subtract(other: RDD[T]): RDD[T]
-   *    def subtract(other: RDD[T], numPartitions: Int): RDD[T]
+   * def subtract(other: RDD[T], numPartitions: Int): RDD[T]
    */
   val rddSubtract: RDD[Int] = rddNum1.subtract(rddNum2, numPartitions = 1)
   rddSubtract.foreach(x => print(s" $x "))
@@ -68,7 +68,7 @@ object RddSetOperations extends App with SparkSessionConnection {
 
   /**
    * 5. def distinct(): RDD[T]
-   *    def distinct(numPartitions: Int): RDD[T]
+   * def distinct(numPartitions: Int): RDD[T]
    */
   val rddDistinct = rddNum2.distinct(1)
   rddDistinct.foreach(x => print(s" $x "))
