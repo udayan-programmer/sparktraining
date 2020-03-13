@@ -1,9 +1,8 @@
 package org.spark.handson.rdd
 
 import org.apache.spark.storage.StorageLevel
-import org.spark.handson.utilities.SparkSessionConnection
 
-object RddPersistence extends App with SparkSessionConnection {
+object RddPersistence extends App {
 
   /**
    * We will target below RDD Persistence Operations
@@ -27,8 +26,8 @@ object RddPersistence extends App with SparkSessionConnection {
    */
 
   val rddSales = spark.read
-    .option("header","true")
-    .option("inferschema","true")
+    .option("header", "true")
+    .option("inferschema", "true")
     .csv("src/main/resources/input/csv/*.csv").rdd
 
   rddSales.take(10).foreach(println)

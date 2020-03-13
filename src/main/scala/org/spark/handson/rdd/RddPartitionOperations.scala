@@ -1,9 +1,8 @@
 package org.spark.handson.rdd
 
 import org.apache.spark.rdd.RDD
-import org.spark.handson.utilities.SparkSessionConnection
 
-object RddPartitionOperations extends App with SparkSessionConnection {
+object RddPartitionOperations extends App {
 
   /**
    * We will target below partition operation on RDD here:

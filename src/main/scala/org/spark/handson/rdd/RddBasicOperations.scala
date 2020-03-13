@@ -1,11 +1,10 @@
 package org.spark.handson.rdd
 
 import org.apache.spark.rdd.RDD
-import org.spark.handson.utilities.SparkSessionConnection
 
 import scala.util.Random
 
-object RddBasicOperations extends App with SparkSessionConnection {
+object RddBasicOperations extends App {
 
   /**
    * We will target below basic operations on RDD here:

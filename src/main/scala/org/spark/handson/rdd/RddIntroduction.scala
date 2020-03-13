@@ -1,9 +1,8 @@
 package org.spark.handson.rdd
 
 import org.apache.spark.rdd.RDD
-import org.spark.handson.utilities.SparkSessionConnection
 
-object RddIntroduction extends App with SparkSessionConnection {
+object RddIntroduction extends App {
 
   /**
    * Possible ways to create RDD.
@@ -60,13 +59,14 @@ object RddIntroduction extends App with SparkSessionConnection {
 
   // RDD with Case Classes (Only available with Spark Scala)
   case class Person(name: String, gender: Char, age: Int)
+
   val personData: Seq[Person] = Seq(
-    Person("Anand",'M',30),
-    Person("Vishal",'M',31),
-    Person("Ankita",'F',22)
+    Person("Anand", 'M', 30),
+    Person("Vishal", 'M', 31),
+    Person("Ankita", 'F', 22)
   )
   val rddPerson: RDD[Person] = spark.sparkContext.parallelize(personData)
-  rddPerson.foreach{
+  rddPerson.foreach {
     person =>
       println(s"Name: ${person.name}, Gender: ${person.gender}, Age: ${person.age}")
   }

@@ -2,9 +2,9 @@ package org.spark.handson.rdd
 
 import org.apache.spark.HashPartitioner
 import org.apache.spark.rdd.RDD
-import org.spark.handson.utilities.SparkSessionConnection
 
-object PairRddOperationsOnKey extends App with SparkSessionConnection {
+
+object PairRddOperationsOnKey extends App {
 
   /**
    * Here we will target below Key operations on Pair RDD.
@@ -163,13 +163,10 @@ object PairRddOperationsOnKey extends App with SparkSessionConnection {
    * 13. partitionBy
    *
    */
-  // TODO: Explore more on this and cover it under sparkadvanced
   println(pairRDD1.getNumPartitions)
   val partitionResult: RDD[(String, Int)] = pairRDD1.
     partitionBy(pairRDD1.partitioner.getOrElse(new HashPartitioner(3)))
   println(partitionResult.getNumPartitions)
-
-
 
 
 }

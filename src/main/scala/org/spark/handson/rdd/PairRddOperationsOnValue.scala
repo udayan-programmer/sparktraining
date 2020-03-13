@@ -3,9 +3,9 @@ package org.spark.handson.rdd
 import java.io
 
 import org.apache.spark.rdd.RDD
-import org.spark.handson.utilities.SparkSessionConnection
 
-object PairRddOperationsOnValue extends App with SparkSessionConnection {
+
+object PairRddOperationsOnValue extends App {
 
   /**
    * Here we will target below value operations on Rdd
@@ -54,16 +54,14 @@ object PairRddOperationsOnValue extends App with SparkSessionConnection {
    * 3. flatMapValues
    */
   val pairRDD2 = spark.sparkContext.parallelize(
-    Seq(("Maths",10),("Science",20)))
+    Seq(("Maths", 10), ("Science", 20)))
 
-  pairRDD2.flatMapValues(x => (x+10,x+20).productIterator).foreach(println)
+  pairRDD2.flatMapValues(x => (x + 10, x + 20).productIterator).foreach(println)
   // Output
   // (Science,30)
   // (Science,40)
   // (Maths,20)
   // (Maths,30)
-
-
 
 
 }
