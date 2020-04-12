@@ -1,4 +1,4 @@
-package org.spark.handson.rdd
+package org.spark.handson.batch.rdd
 
 import java.io
 

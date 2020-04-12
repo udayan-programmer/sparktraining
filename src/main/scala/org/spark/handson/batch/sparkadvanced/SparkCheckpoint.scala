@@ -1,4 +1,4 @@
-package org.spark.handson.sparkadvanced
+package org.spark.handson.batch.sparkadvanced
 
 object SparkCheckpoint extends App {
 
