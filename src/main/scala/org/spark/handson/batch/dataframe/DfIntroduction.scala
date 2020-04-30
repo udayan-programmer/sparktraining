@@ -1,7 +1,9 @@
 package org.spark.handson.batch.dataframe
 
+import java.util.Properties
+
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{Dataset, Row}
+import org.apache.spark.sql.{Dataset, Row, SaveMode}
 import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
 
 object DfIntroduction extends App {
@@ -45,6 +47,34 @@ object DfIntroduction extends App {
     .csv("src/main/resources/input/csv/*.csv")
 
   dfCSVFile.show()
+
+  // spark.read.json()
+  val dfJSONFileSingleLine = spark.read.json("src/main/resources/input/json/singleline.json")
+  dfJSONFileSingleLine.show(20,false)
+
+  val dfJSONFileMultiLine =
+    spark.read.option("multiline",true).json("src/main/resources/input/json/multiline.json")
+  dfJSONFileMultiLine.show(20, false)
+
+  // spark.read.orc()
+  val dfORCFile = spark.read.orc("src/main/resources/input/orc")
+  dfORCFile.show(20, false)
+
+  // spark.read.parquet()
+  val dfParquetFile = spark.read.parquet("src/main/resources/input/parquet")
+  dfParquetFile.show(20, false)
+
+  // spark.read.format
+  val dfAvroFile = spark.read.format("avro").load("src/main/resources/input/avro")
+  dfAvroFile.show(20, false)
+
+  // Read data from MySql table
+  val dfReadMySql = spark.read.jdbc(url, table = "Sales", dbConnection)
+  dfReadMySql.show(10, false)
+
+  // Write data to My SQL table
+  //dfAvroFile.write.mode(SaveMode.Append).jdbc(url, table = "Sales", dbConnection)
+
 
 
 }
