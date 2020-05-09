@@ -42,18 +42,18 @@ object DfIntroduction extends App {
 
   // spark.read.csv()
   val dfCSVFile = spark.read
-    .option("header","true")
-    .option("inferschema","true")
+    .option("header", "true")
+    .option("inferschema", "true")
     .csv("src/main/resources/input/csv/*.csv")
 
   dfCSVFile.show()
 
   // spark.read.json()
   val dfJSONFileSingleLine = spark.read.json("src/main/resources/input/json/singleline.json")
-  dfJSONFileSingleLine.show(20,false)
+  dfJSONFileSingleLine.show(20, false)
 
   val dfJSONFileMultiLine =
-    spark.read.option("multiline",true).json("src/main/resources/input/json/multiline.json")
+    spark.read.option("multiline", true).json("src/main/resources/input/json/multiline.json")
   dfJSONFileMultiLine.show(20, false)
 
   // spark.read.orc()
@@ -73,7 +73,22 @@ object DfIntroduction extends App {
   dfReadMySql.show(10, false)
 
   // Write data to My SQL table
-  //dfAvroFile.write.mode(SaveMode.Append).jdbc(url, table = "Sales", dbConnection)
+  dfAvroFile.write.mode(SaveMode.Overwrite).jdbc(url, table = "Sales", dbConnection)
+
+  /**
+   * Note: Currently bucketBy and SortBy is not supported with save method.
+   *       It is only supported with saveAsTable which is saves data to hive.
+   *       Please refer below JIRA for more details
+   *
+   * https://issues.apache.org/jira/browse/SPARK-19256
+   *
+   */
+  dfAvroFile.write
+    .partitionBy("country")
+    //.bucketBy(5, "orderId")
+    //.sortBy("orderId")
+    .csv("src/main/resources/output/finaloutput/partition_bucket")
+
 
 
 
